@@ -3,3 +3,4 @@ build
 .env
 !prisma/database/.gitkeep
 *.db
+*.db-journal
