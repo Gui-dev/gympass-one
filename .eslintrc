@@ -8,6 +8,7 @@
   "rules": {
     "simple-import-sort/imports": "error",
     "camelcase": "off",
-    "no-useless-return": "off"
+    "no-useless-return": "off",
+    "no-useless-constructor": "off"
   }
 }
