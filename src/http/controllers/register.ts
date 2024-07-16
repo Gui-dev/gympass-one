@@ -22,7 +22,9 @@ export const register = async (
     await registerUseCase.execute({ name, email, password })
   } catch (error) {
     if (error instanceof UserAlreadyExistsError) {
-      return reply.status(409).send()
+      return reply.status(409).send({
+        message: error.message,
+      })
     }
     throw error
   }
