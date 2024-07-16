@@ -7,7 +7,7 @@ import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-user
 import { RegisterUseCase } from '../register'
 
 describe('User register', () => {
-  it('should hbe able to register', async () => {
+  it('should be able to register', async () => {
     const inMemoryUsersRepository = new InMemoryUsersRepository()
     const registerUseCase = new RegisterUseCase(inMemoryUsersRepository)
 
@@ -48,7 +48,7 @@ describe('User register', () => {
       password: 'fake_password',
     })
 
-    expect(() =>
+    await expect(() =>
       registerUseCase.execute({
         name: 'Fake Name',
         email,
