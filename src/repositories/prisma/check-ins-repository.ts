@@ -5,6 +5,13 @@ import { prisma } from '@/lib/prisma'
 import { ICheckInsRepository } from '../contracts/check-ins-repository'
 
 export class CheckInsRepository implements ICheckInsRepository {
+  public async findByUserIdOnDate(
+    user_id: string,
+    date: Date,
+  ): Promise<CheckIn | null> {
+    throw new Error('Method not implemented.')
+  }
+
   public async create({
     user_id,
     gym_id,
