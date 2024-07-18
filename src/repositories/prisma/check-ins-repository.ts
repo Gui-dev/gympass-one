@@ -8,9 +8,7 @@ export class CheckInsRepository implements ICheckInsRepository {
   public async findByUserIdOnDate(
     user_id: string,
     date: Date,
-  ): Promise<CheckIn | null> {
-    throw new Error('Method not implemented.')
-  }
+  ): Promise<CheckIn | null> {}
 
   public async create({
     user_id,
