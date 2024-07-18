@@ -1,4 +1,4 @@
-import { Gym } from '@prisma/client'
+import { Gym, Prisma } from '@prisma/client'
 
 import { prisma } from '@/lib/prisma'
 
@@ -10,6 +10,14 @@ export class GymsRepository implements IGymsRepository {
       where: {
         id,
       },
+    })
+
+    return gym
+  }
+
+  public async create(data: Prisma.GymCreateInput): Promise<Gym> {
+    const gym = await prisma.gym.create({
+      data,
     })
 
     return gym
