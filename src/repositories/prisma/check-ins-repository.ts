@@ -10,6 +10,16 @@ export class CheckInsRepository implements ICheckInsRepository {
     date: Date,
   ): Promise<CheckIn | null> {}
 
+  public async findManyByUserId(user_id: string): Promise<CheckIn[]> {
+    const check_ins = await prisma.checkIn.findMany({
+      where: {
+        user_id,
+      },
+    })
+
+    return check_ins
+  }
+
   public async create({
     user_id,
     gym_id,
