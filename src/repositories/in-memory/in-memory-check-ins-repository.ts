@@ -8,6 +8,16 @@ import { ICheckInsRepository } from '../contracts/check-ins-repository'
 export class InMemoryCheckInsRepository implements ICheckInsRepository {
   public items: CheckIn[] = []
 
+  public async findById(check_in_id: string): Promise<CheckIn | null> {
+    const check_in = this.items.find((checkIn) => checkIn.id === check_in_id)
+
+    if (!check_in) {
+      return null
+    }
+
+    return check_in
+  }
+
   public async findByUserIdOnDate(
     user_id: string,
     date: Date,
@@ -60,6 +70,16 @@ export class InMemoryCheckInsRepository implements ICheckInsRepository {
     }
 
     this.items.push(check_in)
+
+    return check_in
+  }
+
+  public async save(check_in: CheckIn): Promise<CheckIn> {
+    const checkInIndex = this.items.findIndex((item) => item.id === check_in.id)
+
+    if (checkInIndex >= 0) {
+      this.items[checkInIndex] = check_in
+    }
 
     return check_in
   }
