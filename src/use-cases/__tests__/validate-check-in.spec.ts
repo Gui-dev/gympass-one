@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 
+import { ResourceNotFoundError } from '@/errors/resource-not-found-error'
 import { InMemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-check-ins-repository'
 
 import { ValidateCheckInUseCase } from '../validate-check-in'
@@ -29,5 +30,13 @@ describe('Validate CheckIn Use Case', () => {
 
     expect(check_in.validated_at).toEqual(expect.any(Date))
     expect(checkInsRepository.items[0].validated_at).toEqual(expect.any(Date))
+  })
+
+  it('should not be able to validate an inexistent check-in', async () => {
+    await expect(() =>
+      sut.execute({
+        check_in_id: 'fake_check_in_id',
+      }),
+    ).rejects.toBeInstanceOf(ResourceNotFoundError)
   })
 })
