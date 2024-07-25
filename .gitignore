@@ -6,3 +6,5 @@ coverage
 !prisma/database/.gitkeep
 *.db
 *.db-journal
+.DS_Store
+prisma/.DS_Store
