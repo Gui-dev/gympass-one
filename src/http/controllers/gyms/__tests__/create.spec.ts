@@ -4,25 +4,26 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { app } from '@/app'
 import { createAndAuthenticateUser } from '@/utils/test/create-and-authenticate-user'
 
-describe('Profile Controller (e2e)', () => {
+describe('Create Gyms Controller (e2e)', () => {
   beforeAll(async () => {
     await app.ready()
   })
   afterAll(async () => {
     await app.close()
   })
-  it('should be able to get user profile', async () => {
+  it('should be able to create a gym', async () => {
     const { token } = await createAndAuthenticateUser(app)
-    const profileResponse = await request(app.server)
-      .get('/me')
+    const createGymResponse = await request(app.server)
+      .post('/gyms')
       .set('Authorization', `Bearer ${token}`)
-      .send()
+      .send({
+        title: 'Fake tile',
+        description: 'Fake description',
+        phone: 'Fake phone',
+        latitude: -23.7833232,
+        longitude: -46.6801928,
+      })
 
-    expect(profileResponse.statusCode).toEqual(200)
-    expect(profileResponse.body.user).toEqual(
-      expect.objectContaining({
-        email: 'bruce@email.com',
-      }),
-    )
+    expect(createGymResponse.statusCode).toEqual(201)
   })
 })
