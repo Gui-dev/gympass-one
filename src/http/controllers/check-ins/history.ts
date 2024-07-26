@@ -5,10 +5,10 @@ import { makeFetchUserCheckInsHistoryUseCase } from '@/use-cases/factories/make-
 
 export const history = async (request: FastifyRequest, reply: FastifyReply) => {
   const user_id = request.user.sub
-  const searchGymQuerySchema = z.object({
+  const historyGymsQuerySchema = z.object({
     page: z.coerce.number().min(1).default(1),
   })
-  const { page } = searchGymQuerySchema.parse(request.query)
+  const { page } = historyGymsQuerySchema.parse(request.query)
 
   const fetchUserCheckInsHistoryUseCase = makeFetchUserCheckInsHistoryUseCase()
   const { check_ins } = await fetchUserCheckInsHistoryUseCase.execute({
