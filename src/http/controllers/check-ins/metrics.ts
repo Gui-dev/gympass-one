@@ -9,5 +9,5 @@ export const metrics = async (request: FastifyRequest, reply: FastifyReply) => {
   const { check_ins_count } = await getUserMetricsUseCase.execute({
     user_id,
   })
-  return reply.status(201).send({ check_ins_count })
+  return reply.status(200).send({ check_ins_count })
 }
