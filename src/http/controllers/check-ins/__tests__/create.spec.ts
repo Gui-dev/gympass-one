@@ -23,7 +23,7 @@ describe('Create Check-in Controller (e2e)', () => {
         longitude: -46.6801928,
       },
     })
-    const createGymResponse = await request(app.server)
+    const createCheckInResponse = await request(app.server)
       .post(`/gyms/${gym.id}/check-ins`)
       .set('Authorization', `Bearer ${token}`)
       .send({
@@ -31,6 +31,6 @@ describe('Create Check-in Controller (e2e)', () => {
         longitude: -46.6801928,
       })
 
-    expect(createGymResponse.statusCode).toEqual(201)
+    expect(createCheckInResponse.statusCode).toEqual(201)
   })
 })
