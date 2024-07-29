@@ -18,7 +18,9 @@ export const authenticate = async (
     const authenticateUseCase = makeAuthenticateUsecase()
     const { user } = await authenticateUseCase.execute({ email, password })
     const token = await reply.jwtSign(
-      {},
+      {
+        role: user.role,
+      },
       {
         sign: {
           sub: user.id,
@@ -26,7 +28,9 @@ export const authenticate = async (
       },
     )
     const refresh_token = await reply.jwtSign(
-      {},
+      {
+        role: user.role,
+      },
       {
         sign: {
           sub: user.id,
