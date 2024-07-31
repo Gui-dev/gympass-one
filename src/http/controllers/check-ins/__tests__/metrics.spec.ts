@@ -38,12 +38,12 @@ describe('Metrics Check-in Controller (e2e)', () => {
       ],
     })
 
-    const historyResponse = await request(app.server)
+    const metricsResponse = await request(app.server)
       .get('/check-ins/metrics')
       .set('Authorization', `Bearer ${token}`)
       .send()
 
-    expect(historyResponse.statusCode).toEqual(200)
-    expect(historyResponse.body.check_ins_count).toEqual(2)
+    expect(metricsResponse.statusCode).toEqual(200)
+    expect(metricsResponse.body.check_ins_count).toEqual(2)
   })
 })
